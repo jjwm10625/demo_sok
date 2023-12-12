@@ -1,10 +1,18 @@
 import streamlit as st
 import pandas as pd
+import os
 
 # Cache our data
 @st.cache(allow_output_mutation=True)
 def load_df():
-    df = pd.read_csv("data/titanic.csv")  # Assuming 'data' is a subdirectory where your CSV file is located
+    # 현재 스크립트의 디렉토리를 가져오기
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+
+    # CSV 파일의 절대 경로 생성
+    csv_file_path = os.path.join(script_directory, "data/titanic.csv")
+
+    # CSV 파일 읽기
+    df = pd.read_csv(csv_file_path)
 
     survival_options = df.Survived.unique()
     p_class_options = df.Pclass.unique()
