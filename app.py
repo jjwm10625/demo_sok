@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 
 # Cache our data
-@st.cache(allow_output_mutation=True)  # Use st.cache instead of st.cache_data and allow_output_mutation
+@st.cache(allow_output_mutation=True)
 def load_df():
-    df = pd.read_csv("./data/titanic.csv")
+    df = pd.read_csv("data/titanic.csv")  # Assuming 'data' is a subdirectory where your CSV file is located
 
     survival_options = df.Survived.unique()
     p_class_options = df.Pclass.unique()
@@ -23,21 +23,18 @@ def check_rows(column, options):
 
 st.title("Demo DataFrame Query App")
 df, survival_options, p_class_options, sex_options, embark_options, min_fare, max_fare, min_age, max_age = load_df()
-res = df.copy()  # Create a copy of the original DataFrame
+res = df.copy()
 
 name_query = st.text_input("String match for Name")
 cols = st.columns(4)
 survival = cols[0].multiselect("Survived", survival_options)
-p_class = cols[1].multiselect("Passenger Class", p_class_options)  # Fix variable name typo
+p_class = cols[1].multiselect("Passenger Class", p_class_options)
 sex = cols[2].multiselect("Sex", sex_options)
 embark = cols[3].multiselect("Embarked", embark_options)
 
 range_cols = st.columns(3)
-min_fare_range, max_fare_range = range_cols[0].slider("Lowest Fare", float(min_fare), float(max_fare),
-                                                     [float(min_fare), float(max_fare)])
-
-min_age_range, max_age_range = range_cols[2].slider("Lowest Age", float(min_age), float(max_age),
-                                                    [float(min_age), float(max_age)])
+min_fare_range, max_fare_range = range_cols[0].slider("Lowest Fare", float(min_fare), float(max_fare), [float(min_fare), float(max_fare)])
+min_age_range, max_age_range = range_cols[2].slider("Lowest Age", float(min_age), float(max_age), [float(min_age), float(max_age)])
 
 if name_query != "":
     res = res.loc[res.Name.str.contains(name_query)]
