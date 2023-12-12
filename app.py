@@ -27,11 +27,10 @@ def load_df():
     return df, survival_options, p_class_options, sex_options, embark_options, min_fare, max_fare, min_age, max_age
 
 def check_rows(column, options):
-    return res.loc[res[column].isin(options)]
+    return df.loc[df[column].isin(options)]  # 'res'를 'df'로 변경
 
 st.title("Demo DataFrame Query App")
 df, survival_options, p_class_options, sex_options, embark_options, min_fare, max_fare, min_age, max_age = load_df()
-res = df.copy()
 
 name_query = st.text_input("String match for Name")
 cols = st.columns(4)
@@ -43,6 +42,9 @@ embark = cols[3].multiselect("Embarked", embark_options)
 range_cols = st.columns(3)
 min_fare_range, max_fare_range = range_cols[0].slider("Lowest Fare", float(min_fare), float(max_fare), [float(min_fare), float(max_fare)])
 min_age_range, max_age_range = range_cols[2].slider("Lowest Age", float(min_age), float(max_age), [float(min_age), float(max_age)])
+
+# 'res' 대신 'df'를 사용하여 새로운 DataFrame 생성
+res = df.copy()
 
 if name_query != "":
     res = res.loc[res.Name.str.contains(name_query)]
