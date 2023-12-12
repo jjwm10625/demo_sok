@@ -9,7 +9,7 @@ def load_df():
     script_directory = os.path.dirname(os.path.abspath(__file__))
 
     # CSV 파일의 절대 경로 생성
-    csv_file_path = os.path.join(script_directory, "/data/titanic.csv")
+    csv_file_path = os.path.join(script_directory, "data/titanic.csv")
 
     # CSV 파일 읽기
     df = pd.read_csv(csv_file_path)
