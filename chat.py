@@ -1,6 +1,6 @@
+import plotly.express as px
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 
 # CSV 파일 읽기
 titanic_data = pd.read_csv('titanic.csv')
