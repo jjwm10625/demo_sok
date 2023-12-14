@@ -1,4 +1,5 @@
-pip install pandas
+# 필요한 패키지 설치
+# !pip install streamlit pandas seaborn matplotlib plotly
 
 import streamlit as st
 import pandas as pd
@@ -6,8 +7,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-# 타이타닉 데이터 불러오기
-titanic_data = pd.read_csv('/content/titanic.csv')  # 데이터셋의 실제 경로로 수정하세요.
+# 타이타닉 데이터 불러오기 (실제 데이터 파일 경로로 수정)
+titanic_data = pd.read_csv('/path/to/titanic.csv')
 
 # 상관 계수 계산
 correlation_matrix = titanic_data.corr()
@@ -40,5 +41,3 @@ plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f')
 plt.title('데이터 변수 간 상관 관계')
 st.pyplot()
-
-# Streamlit 앱 실행: streamlit run 파일명.py
