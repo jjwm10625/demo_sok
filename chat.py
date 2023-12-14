@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 # 타이타닉 데이터 불러오기 (실제 데이터 파일 경로로 수정)
-titanic_data = pd.read_csv('/path/to/titanic.csv')
+titanic_data = pd.read_csv('data/titanic.csv')
 
 # 상관 계수 계산
 correlation_matrix = titanic_data.corr()
